@@ -37,3 +37,4 @@ set ruler
 
 let g:airline_powerline_fonts = 1
 let g:NERDTreeWinSize = 60
+let g:NERDTreeShowHidden = 1
