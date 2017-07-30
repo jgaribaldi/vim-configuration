@@ -11,6 +11,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -31,3 +33,5 @@ syntax on
 set autoindent
 set number
 set ruler
+
+let g:airline_powerline_fonts = 1
