@@ -11,8 +11,8 @@ Personal configuration for vim
 
 # On Linux
 1. Make sure to install `vim-gui-common`, `vim-runtime` and `vim-nox` packages:
-`sudo apt-get install vim-gui-common`
-`sudo apt-get install vim-runtime`
-`sudo apt-get install vim-nox`
+- `sudo apt-get install vim-gui-common`
+- `sudo apt-get install vim-runtime`
+- `sudo apt-get install vim-nox`
 2. Powerline fonts can be installed with:
-`sudo apt-get install fonts-powerline`
+- `sudo apt-get install fonts-powerline`
