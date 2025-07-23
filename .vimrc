@@ -14,6 +14,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandox-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -40,3 +42,29 @@ let g:NERDTreeWinSize = 60
 let g:NERDTreeShowHidden = 1
 set fillchars+=vert:│
 hi VertSplit cterm=NONE
+
+" Better markdown folding using expression method
+autocmd FileType markdown,pandoc setlocal foldmethod=expr
+autocmd FileType markdown,pandoc setlocal foldexpr=MarkdownFolds()
+autocmd FileType markdown,pandoc setlocal foldenable
+autocmd FileType markdown,pandoc setlocal foldlevel=1
+
+function! MarkdownFolds()
+    let line = getline(v:lnum)
+    " Create folds for headers
+    if line =~ '^#\{1\}'
+        return '>1'
+    elseif line =~ '^#\{2\}'
+        return '>2'
+    elseif line =~ '^#\{3\}'
+        return '>3'
+    elseif line =~ '^#\{4\}'
+        return '>4'
+    elseif line =~ '^#\{5\}'
+        return '>5'
+    elseif line =~ '^#\{6\}'
+        return '>6'
+    else
+        return '='
+    endif
+endfunction
