@@ -15,7 +15,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandox-syntax'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'joshdick/onedark.vim'
+Plugin 'nordtheme/vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,28 +45,36 @@ let g:NERDTreeShowHidden = 1
 set fillchars+=vert:│
 hi VertSplit cterm=NONE
 
-" Better markdown folding using expression method
-autocmd FileType markdown,pandoc setlocal foldmethod=expr
-autocmd FileType markdown,pandoc setlocal foldexpr=MarkdownFolds()
+"autocmd FileType markdown,pandoc setlocal foldmethod=manual
 autocmd FileType markdown,pandoc setlocal foldenable
-autocmd FileType markdown,pandoc setlocal foldlevel=1
+autocmd FileType markdown,pandoc setlocal foldlevel=99
+autocmd FileType markdown,pandoc setlocal nospell
 
-function! MarkdownFolds()
+" Fix code block syntax parsing
+let g:pandoc#syntax#codeblocks#embeds#langs = ["python", "javascript", "bash", "html", "css"]
+
+" Custom folding that ignores # inside code blocks
+autocmd FileType pandoc,markdown setlocal foldmethod=expr
+autocmd FileType pandoc,markdown setlocal foldexpr=MarkdownFoldLevel()
+
+function! MarkdownFoldLevel()
     let line = getline(v:lnum)
-    " Create folds for headers
-    if line =~ '^#\{1\}'
-        return '>1'
-    elseif line =~ '^#\{2\}'
-        return '>2'
-    elseif line =~ '^#\{3\}'
-        return '>3'
-    elseif line =~ '^#\{4\}'
-        return '>4'
-    elseif line =~ '^#\{5\}'
-        return '>5'
-    elseif line =~ '^#\{6\}'
-        return '>6'
+    
+    " Check if we're inside a code block
+    let code_block = 0
+    for i in range(1, v:lnum)
+        if getline(i) =~ '^```'
+            let code_block = !code_block
+        endif
+    endfor
+    
+    " Only fold on headers outside code blocks
+    if !code_block && line =~ '^#\+'
+        return ">" . len(matchstr(line, '^#\+'))
     else
-        return '='
+        return "="
     endif
 endfunction
+
+" colorscheme onedark
+colorscheme nord
