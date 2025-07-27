@@ -18,29 +18,18 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'joshdick/onedark.vim'
 Plugin 'nordtheme/vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 syntax on
 set autoindent
-set number
-set ruler
+set relativenumber
 
 let g:airline_powerline_fonts = 1
-let g:NERDTreeWinSize = 60
+let g:NERDTreeWinSize = 50
 let g:NERDTreeShowHidden = 1
 set fillchars+=vert:│
 hi VertSplit cterm=NONE
@@ -76,5 +65,12 @@ function! MarkdownFoldLevel()
     endif
 endfunction
 
+autocmd FileType go setlocal foldmethod=syntax
+autocmd FileType go setlocal foldlevel=99
+autocmd FileType go setlocal nowrap
+
+" show open buffers on top
+let g:airline#extensions#tabline#enabled = 1
+
 " colorscheme onedark
-colorscheme nord
+colorscheme onedark
