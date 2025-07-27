@@ -16,8 +16,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'joshdick/onedark.vim'
-Plugin 'nordtheme/vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
@@ -72,5 +70,5 @@ autocmd FileType go setlocal nowrap
 " show open buffers on top
 let g:airline#extensions#tabline#enabled = 1
 
-" colorscheme onedark
-colorscheme onedark
+" colorscheme havamax
+colorscheme sorbet
