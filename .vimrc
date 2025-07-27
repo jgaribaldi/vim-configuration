@@ -70,5 +70,5 @@ autocmd FileType go setlocal nowrap
 " show open buffers on top
 let g:airline#extensions#tabline#enabled = 1
 
-" colorscheme havamax
-colorscheme sorbet
+colorscheme habamax
+" colorscheme sorbet
