@@ -17,6 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'pedrohdz/vim-yaml-folds'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,6 +67,9 @@ endfunction
 autocmd FileType go setlocal foldmethod=syntax
 autocmd FileType go setlocal foldlevel=99
 autocmd FileType go setlocal nowrap
+
+autocmd FileType yaml setlocal foldmethod=indent
+autocmd FileType yaml setlocal foldlevel=99
 
 " show open buffers on top
 let g:airline#extensions#tabline#enabled = 1
